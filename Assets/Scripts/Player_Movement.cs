@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.Experimental.AI;
+using UnityEngine.SceneManagement;
 
 public class Player_Movement : MonoBehaviour
 {
 
     public float speed = 20;
     public Vector2 banana_position;
-    public GameObject Gameobject;
+    float distance;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,14 +23,18 @@ public class Player_Movement : MonoBehaviour
     {
 
         Vector2 position = transform.position;
-        Vector2 banana_position = Gameobject.transform.position;
+        Vector2 banana_position = transform.position;
 
+        banana_position.x = 4.5985f;
+        banana_position.y = 2.7878f;
 
 
         position.x += Input.GetAxis("Horizontal") * speed * Time.deltaTime;
         position.y += Input.GetAxis("Vertical") * speed * Time.deltaTime;
 
-        if (Vector2.Distance(position, banana_position) > 10)
+        distance = Vector2.Distance(position, banana_position);
+
+        if (distance < 2)
         {
 
             print("bnanan");
